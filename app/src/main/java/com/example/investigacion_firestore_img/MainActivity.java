@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
                     mStorage.getReference().child(image).getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
                         @Override
                         public void onSuccess(byte[] bytes) {
+                            //Este proceso es necesario, ya que el método nos devuelve la imagen como un array de bytes.
+                            //ImageView no interpreta ese array de bytes y hay que realizar la conversión.
                             Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                             mImage.setImageBitmap(Bitmap.createScaledBitmap(bmp, mImage.getWidth(), mImage.getHeight(), false));
                         }
